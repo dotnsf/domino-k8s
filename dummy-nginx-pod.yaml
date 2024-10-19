@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    volumeMounts:
+    - mountPath: /data
+      name: local-volume
+    - mountPath: /notesdata
+      name: domino-volume
+  volumes:
+  - name: local-volume
+    hostPath:
+      path: /home/user01/notesdata
+      type: Directory
+  - name: domino-volume
+    persistentVolumeClaim:
+      claimName: domino-pvc
+

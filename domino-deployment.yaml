@@ -17,7 +17,6 @@ spec:
       containers:
         - image: jp.icr.io/dotnsf/domino-docker:V1101_03212020prod
           name: domino
-          env: {}
           volumeMounts:
             - mountPath: /local/notesdata
               name: domino-volume
