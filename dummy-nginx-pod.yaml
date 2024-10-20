@@ -11,9 +11,9 @@ spec:
     securityContext:
       privileged: true    # this will allow pod to make changes on the host directory
     volumeMounts:
-    - mountPath: /localdata
+    - mountPath: /mnt/localdata
       name: local-volume
-    - mountPath: /notesdata
+    - mountPath: /dominodata
       name: domino-volume
   volumes:
   - name: local-volume

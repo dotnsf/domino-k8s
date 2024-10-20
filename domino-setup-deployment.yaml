@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: domino-setup
+  name: domino-setup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: domino-setup
+  template:
+    metadata:
+      labels:
+        app: domino-setup
+    spec:
+      containers:
+        - image: jp.icr.io/dotnsf/domino-docker:V1101_03212020prod
+          name: domino-setup
+          args: [ '--setup' ]
+          volumeMounts:
+            - mountPath: /local/notesdata
+              name: domino-volume
+      volumes:
+        - name: domino-volume
+          persistentVolumeClaim:
+            claimName: domino-pvc
+
