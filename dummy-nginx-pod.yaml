@@ -1,25 +1,19 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: nginx-pod
+  name: dummy-nginx-pod
 spec:
   securityContext:
     runAsUser: 0
   containers:
-  - name: nginx-container
+  - name: dummy-nginx-container
     image: nginx
     securityContext:
       privileged: true    # this will allow pod to make changes on the host directory
     volumeMounts:
-    - mountPath: /mnt/localdata
-      name: local-volume
     - mountPath: /dominodata
       name: domino-volume
   volumes:
-  - name: local-volume
-    hostPath:
-      path: /home/user01/notesdata
-      type: Directory
   - name: domino-volume
     persistentVolumeClaim:
       claimName: domino-pvc
